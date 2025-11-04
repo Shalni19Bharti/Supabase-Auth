@@ -1,0 +1,13 @@
+npm run lint
+if [ $? -ne 0 ]; then
+  echo "\n❌ Lint errors found. Commit aborted."
+  exit 1
+fi
+
+npm run build --if-present
+if [ $? -ne 0 ]; then
+  echo "\n❌ Build failed. Commit aborted."
+  exit 1
+fi
+
+npx lint-staged
